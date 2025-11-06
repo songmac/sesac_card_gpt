@@ -11,11 +11,11 @@ load_dotenv()
 
 
 # ===================== session state 설정 ===================== 
-"""
-일반적인 코드에서는 memory 객체를 생성하면 대화 내용들을 기억하지만
-streamlit에서는 웹 서버에서 요청, 응답을 수행하기 때문에 
-세션에 저장하지 않으면 다 초기화 됨 (따라서 memory 객체를 session_state에 저장해야 함)
-"""
+
+# 일반적인 코드에서는 memory 객체를 생성하면 대화 내용들을 기억하지만
+# streamlit에서는 웹 서버에서 요청, 응답을 수행하기 때문에 
+# 세션에 저장하지 않으면 다 초기화 됨 (따라서 memory 객체를 session_state에 저장해야 함)
+
 if "pre_memory" not in st.session_state:
     st.session_state["pre_memory"] = ConversationBufferMemory(
         memory_key = "chat_history",
@@ -32,11 +32,10 @@ model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
 
 # ===================== 시스템 프롬프트 정의 =====================
-"""
-화면에 출력할 대화 기록 저장: 
-ChatGPT 서비스와 유사하게 웹 상에서 우리의 질의 응답 내역이
-계속 보여져야 하기 때문에 세션으로 관리가 필요"""
 
+# 화면에 출력할 대화 기록 저장: 
+# ChatGPT 서비스와 유사하게 웹 상에서 우리의 질의 응답 내역이
+# 계속 보여져야 하기 때문에 세션으로 관리가 필요
 
 system_prompt = """
 너는 카드사 직원이야. 고객의 질의가 들어오면 context에 따라 가장 혜택이 많은 카드를 3개 추천해줘. 
