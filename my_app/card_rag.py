@@ -47,7 +47,7 @@ def get_or_create_vectorstore(persist_directory="./Chroma", collection_name="car
     
         # 새로운 vectorstore 생성
         # 1. 데이터 로드
-        with open("data/gorila_cards_info.json", "r", encoding="utf-8") as f:
+        with open("data/gorilla_cards_info.json", "r", encoding="utf-8") as f:
             docs = json.load(f)
 
         # 2. 문서 분할 (Chunking)
